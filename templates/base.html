@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій особистий кабінет</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.light {
+            background-color: #f4f6f9;
+            color: #222;
+        }
+        body.dark {
+            background-color: #18191a;
+            color: #e4e6eb;
+        }
+        nav {
+            background-color: #4f46e5;
+            padding: 15px 30px;
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        body.light .container { background-color: #ffffff; }
+        body.dark .container { background-color: #242526; }
+        
+        input, select, button {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover { background-color: #4338ca; }
+        button.danger { background-color: #dc2626; }
+        button.danger:hover { background-color: #b91c1c; }
+    </style>
+</head>
+<body class="{{ theme }}">
+    <nav>
+        <a href="{{ url_for('index') }}">1. Головна (Профіль)</a>
+        <a href="{{ url_for('tasks') }}">2. Мої справи</a>
+        <a href="{{ url_for('settings') }}">3. Налаштування</a>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

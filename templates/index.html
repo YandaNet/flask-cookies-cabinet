@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>
+        {% if username %}
+            Привіт {{ username }}! 
+        {% else %}
+            Привіт
+        {% endif %}
+    </h1>
+    
+    <p><strong>Останнє відвідування:</strong> {{ last_visit }}</p>
+    <hr>
+
+    <h3>Налаштувати профіль</h3>
+    <form method="POST">
+        <div>
+            <label>Ваше ім'я:</label><br>
+            <input type="text" name="username" value="{{ username }}" placeholder="Введіть ім'я" required>
+        </div>
+        <div style="margin-top: 10px;">
+            <label>Оберіть тему:</label><br>
+            <select name="theme">
+                <option value="light" {% if theme == 'light' %}selected{% endif %}>Світла</option>
+                <option value="dark" {% if theme == 'dark' %}selected{% endif %}>Темна</option>
+            </select>
+        </div>
+        <button type="submit" style="margin-top: 15px;">Зберегти у Cookies</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Налаштування</h1>
+    
+    <p><strong>Поточне ім'я:</strong> {{ username if username else 'Не вказано' }}</p>
+    <p><strong>Поточна тема:</strong> {{ 'Темна' if theme == 'dark' else 'Світла' }}</p>
+    <hr>
+
+    <h3>Змінити тему</h3>
+    <form method="POST">
+        <input type="hidden" name="action" value="change_theme">
+        <select name="theme">
+            <option value="light" {% if theme == 'light' %}selected{% endif %}>Світла</option>
+            <option value="dark" {% if theme == 'dark' %}selected{% endif %}>Темна</option>
+        </select>
+        <button type="submit">Змінити тему</button>
+    </form>
+
+    <hr>
+    <h3>Управління даними (Cookies)</h3>
+    
+    <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start;">
+        <form method="POST">
+            <input type="hidden" name="action" value="delete_name">
+            <button type="submit" class="danger">Видалити ім'я</button>
+        </form>
+
+        <form method="POST">
+            <input type="hidden" name="action" value="clear_tasks">
+            <button type="submit" class="danger">Очистити список справ</button>
+        </form>
+
+        <form method="POST">
+            <input type="hidden" name="action" value="delete_dark_theme">
+            <button type="submit" class="danger">Видалити куки із темною темою</button>
+        </form>
+    </div>
+{% endblock %}

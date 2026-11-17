@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Мої справи</h1>
+    <p><strong>Загальна кількість справ:</strong> {{ total_tasks }}</p>
+
+    <form method="POST" style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <input type="hidden" name="action" value="add">
+        <input type="text" name="task" placeholder="Нова справа..." style="flex: 1;" required>
+        <button type="submit">Додати</button>
+    </form>
+
+    {% if tasks %}
+        <ul style="list-style: none; padding: 0;">
+            {% for task in tasks %}
+                <li style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #4444;">
+                    <span>{{ loop.index }}. {{ task }}</span>
+                    <form method="POST" style="margin: 0;">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="index" value="{{ loop.index0 }}">
+                        <button type="submit" class="danger">Видалити</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Список справ порожній.</p>
+    {% endif %}
+{% endblock %}
